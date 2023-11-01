@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Navbar() {
   return (
       <>
@@ -9,8 +11,8 @@ function Navbar() {
 
                   <div className='flex gap-4'>
                       Postagens
-                      Temas
-                      Cadastrar tema
+                      <Link to='/temas' className='hover:underline'>Temas</Link>
+                      Cadastrar 
                       Perfil
                       Sair
                   </div>

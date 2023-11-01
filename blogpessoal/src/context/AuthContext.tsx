@@ -9,6 +9,7 @@ interface AuthProviderProps {
     children: ReactNode
 }
 
+//criação do contexto e difinição do modelo de dados que será gravado
 export const AuthContext = createContext({} as AuthContextProps)
 
 export function AuthProvider({ children }: AuthProviderProps) {
