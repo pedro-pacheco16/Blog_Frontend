@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dna } from "react-loader-spinner";
+import { ClimbingBoxLoader } from "react-spinners";
 
 import { buscar } from "../../../services/Service";
 import { AuthContext } from "../../../context/AuthContext";
@@ -9,12 +9,11 @@ import Tema from "../../../models/Tema";
 import CardTemas from "../cardTemas/CardTemas";
 
 function ListaTemas() {
-  
   const [temas, setTemas] = useState<Tema[]>([]);
-    
+
   const navigate = useNavigate();
-  
-  const {usuario, handleLogout} = useContext(AuthContext);
+
+  const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
   async function buscarTemas() {
@@ -22,7 +21,6 @@ function ListaTemas() {
       await buscar("/temas", setTemas, {
         headers: { Authorization: token },
       });
-
     } catch (error: any) {
       if (error.toString().includes("403")) {
         alert("O token expirou, favor logar novamente");
@@ -45,14 +43,14 @@ function ListaTemas() {
   return (
     <>
       {temas.length === 0 && (
-        <Dna
-          visible={true}
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper mx-auto"
-        />
+        <div className="flex justify-center w-full absolute top-1/2">
+          <ClimbingBoxLoader
+            color="#40739e"
+            loading
+            size={28}
+            speedMultiplier={0.7}
+          />
+        </div>
       )}
 
       <div className="flex justify-center w-full my-4">
@@ -70,4 +68,4 @@ function ListaTemas() {
   );
 }
 
-export default ListaTemas
+export default ListaTemas;

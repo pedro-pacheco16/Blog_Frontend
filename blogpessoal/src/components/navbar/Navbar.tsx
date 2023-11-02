@@ -1,25 +1,44 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HouseLine, FileText, Tag, PlusSquare, User,SignOut} from '@phosphor-icons/react';
+
+
+import { AuthContext } from "../../context/AuthContext";
+
 
 function Navbar() {
-  return (
-      <>
-          <div className='w-full bg-indigo-900 text-white
-              flex justify-center py-4'>
-          
-              <div className="container flex justify-between text-lg">
-                  Blog Pessoal
+  const navigate = useNavigate();
+  const { handleLogout } = useContext(AuthContext);
 
-                  <div className='flex gap-4'>
-                      Postagens
-                      <Link to='/temas' className='hover:underline'>Temas</Link>
-                      Cadastrar 
-                      Perfil
-                      Sair
-                  </div>
-              </div>
+  function logout() {
+    handleLogout();
+    alert("Usuário deslogado com sucesso");
+    navigate("/login");
+  }
+  return (
+    <>
+      <div
+        className="w-full bg-primary text-white
+                flex justify-center py-4"
+      >
+        <div className="container flex justify-between text-lg">
+          <Link to="/home" className="text-2xl font-bold" title="Página Inicial">
+          <HouseLine size={32} weight="fill" /> 
+          </Link>
+
+          <div className="flex gap-4">
+          <Link to='/temas' className='hover:underline' title="Postagens"><FileText size={25} /></Link>
+            <Link to='/temas' className='hover:underline' title="Temas"><Tag size={25} /></Link>
+            <Link to='/cadastroTema' className='hover:underline' title="Cadastrar Temas"><PlusSquare size={25} /></Link>
+            <Link to='/' className='hover:underline' title="Perfil"><User size={25} /></Link>
+            <Link to="" onClick={logout} className="hover:underline" title="Deslogar">
+            <Link to='/' className='hover:underline'><SignOut size={32} weight="fill" /></Link>
+            </Link>
           </div>
-      </>
-  )
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar;
