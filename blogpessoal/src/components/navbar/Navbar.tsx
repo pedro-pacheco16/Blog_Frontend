@@ -27,11 +27,11 @@ function Navbar() {
           </Link>
 
           <div className="flex gap-4">
-          <Link to='/temas' className='hover:underline' title="Postagens"><FileText size={25} /></Link>
+          <Link to='/postagens' className='hover:underline' title="Postagens"><FileText size={25} /></Link>
             <Link to='/temas' className='hover:underline' title="Temas"><Tag size={25} /></Link>
             <Link to='/cadastroTema' className='hover:underline' title="Cadastrar Temas"><PlusSquare size={25} /></Link>
-            <Link to='/' className='hover:underline' title="Perfil"><User size={25} /></Link>
-            <Link to="" onClick={logout} className="hover:underline" title="Deslogar">
+            <Link to='/perfil' className='hover:underline' title="Perfil"><User size={25} /></Link>
+            <Link to="" onClick={logout} className="hover:underline" title="Sair">
             <Link to='/' className='hover:underline'><SignOut size={32} weight="fill" /></Link>
             </Link>
           </div>
