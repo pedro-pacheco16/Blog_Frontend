@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
+import {toastAlerta } from '../../utils/ToastAlerta'
 import { cadastrarUsuario } from "../../services/Service";
 import Usuario from "../../models/Usuario";
 
@@ -43,25 +44,27 @@ function Cadastro() {
   }
 
   async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
 
     if (confirmaSenha === usuario.senha && usuario.senha.length >= 8) {
-      setIsLoading(true);
+        setIsLoading(true)
 
-      try {
-        await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario);
-        alert("Usuário cadastrado com sucesso");
-      } catch (error) {
-        alert("Erro ao cadastrar o Usuário");
-      }
+        try {
+            await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
+            toastAlerta('Usuário cadastrado com sucesso', "sucesso")
+
+        } catch (error) {
+            toastAlerta('Erro ao cadastrar o Usuário', "erro")
+        }
+
     } else {
-      alert("Dados inconsistentes. Verifique as informações de cadastro.");
-      setUsuario({ ...usuario, senha: "" });
-      setConfirmaSenha("");
+        toastAlerta('Erro ao cadastrar o Usuário', "erro")
+        setUsuario({ ...usuario, senha: "" })
+        setConfirmaSenha("")
     }
 
-    setIsLoading(false);
-  }
+    setIsLoading(false)
+}
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
       <div className="fundoCadastro hidden lg:block"></div>
