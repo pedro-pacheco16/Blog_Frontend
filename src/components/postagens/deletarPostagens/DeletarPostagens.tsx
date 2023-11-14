@@ -70,6 +70,8 @@ function DeletarPostagem() {
     navigate("/postagens");
   }
 
+  console.log(id);
+
   return (
     <div className="container w-1/3 mx-auto">
       <h1 className="text-4xl text-center my-4">Deletar Postagem</h1>
